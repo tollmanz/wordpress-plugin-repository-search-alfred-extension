@@ -1,5 +1,5 @@
 <?php
-$slugs = array( 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description', 'download' );
+$slugs = array( 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description' );
 
 // Key 1 is the query send to the script from Alfred
 $query = $argv[1];
@@ -60,8 +60,6 @@ if ( $count > 0 ) {
 
 		if ( 'contributors' != $slug ) {
 			echo strip_tags( $plugin->$slug ) . $delimiter . $delimiter;
-		} elseif ( 'download' == $slug ) {
-			echo '<a href="http://downloads.wordpress.org/plugin/' . $plugin->slug . '.zip">Download</a>' . $delimiter . $delimiter;
 		} else {
 			if ( is_array( $plugin->$slug ) ) {
 				echo strip_tags( implode( ', ', array_keys( $plugin->$slug ) ) ) . $delimiter . $delimiter;
