@@ -1,5 +1,5 @@
 <?php
-$slugs = array( 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description' );
+$slugs = array( 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description', 'download' );
 
 // Key 1 is the query send to the script from Alfred
 $query = $argv[1];
@@ -56,10 +56,26 @@ if ( $count > 0 ) {
 
 	// Print only the requested piece of information
 	foreach ( $results->plugins as $key => $plugin ) {
-		echo $plugin->name . ' (' . $slug . ')' . ":\n";
+		if ( 'download' != $slug )
+			echo $plugin->name . ' (' . $slug . ')' . ":\n";
 
-		if ( 'contributors' != $slug ) {
+		if ( 'contributors' != $slug && 'download' != $slug ) {
 			echo strip_tags( $plugin->$slug ) . $delimiter . $delimiter;
+		} elseif ( 'download' == $slug ) {
+			$filename = $plugin->slug . '.zip';
+			$file_location = 'http://downloads.wordpress.org/plugin/' . $filename;
+			$local_save = '~/Desktop/' . $filename;
+
+			// @todo: find a better way to test this
+			if ( '' == exec( 'curl ' . $file_location . ' -o ' . $local_save ) ) {
+				echo $plugin->name . ' downloaded to the desktop.'  . "\n";
+
+				exec( 'cd ~/Desktop;unzip ' . $filename );
+				echo $filename . ' unzipped to the desktop.' . "\n";
+
+				if ( '' == exec( 'rm ~/Desktop/' . $filename ) )
+					echo $filename . ' removed.' . $delimiter . $delimiter;
+			}
 		} else {
 			if ( is_array( $plugin->$slug ) ) {
 				echo strip_tags( implode( ', ', array_keys( $plugin->$slug ) ) ) . $delimiter . $delimiter;

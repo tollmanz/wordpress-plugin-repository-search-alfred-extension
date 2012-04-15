@@ -11,7 +11,7 @@
 #Use: 	wpplugin &lt;slug&gt; &lt;term&gt; [num]
 #Ex: 	wpplugin version debug bar
 
-#slug:	key from the WordPress plugin repo response object. Valid args are: 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description'.
+#slug:	key from the WordPress plugin repo response object. Valid args are: 'name', 'slug', 'version', 'author', 'author_profile', 'contributors', 'requires', 'tested', 'rating', 'num_ratings', 'homepage', 'description', 'homepage', 'short_description', 'download'.
 #term:	search term to search against the WordPress plugin repo
 #num:	number of results to return. default = 1.
 
