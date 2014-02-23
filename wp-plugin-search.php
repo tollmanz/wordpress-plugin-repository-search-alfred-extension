@@ -38,8 +38,8 @@ curl_setopt( $handle, CURLOPT_CONNECTTIMEOUT, 15 );
 curl_setopt( $handle, CURLOPT_TIMEOUT, 15 );
 curl_setopt( $handle, CURLOPT_URL, 'http://api.wordpress.org/plugins/info/1.0/' );
 curl_setopt( $handle, CURLOPT_RETURNTRANSFER, true );
-curl_setopt( $handle, CURLOPT_SSL_VERIFYHOST, true );
-curl_setopt( $handle, CURLOPT_SSL_VERIFYPEER, true );
+curl_setopt( $handle, CURLOPT_SSL_VERIFYHOST, 2 );
+curl_setopt( $handle, CURLOPT_SSL_VERIFYPEER, 1 );
 curl_setopt( $handle, CURLOPT_POST, true );
 curl_setopt( $handle, CURLOPT_POSTFIELDS, $postfields );
 
